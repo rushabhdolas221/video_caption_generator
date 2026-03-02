@@ -1,4 +1,4 @@
-# Rushabh - AI Video Caption Generator
+# Rushabh AI Video Caption Generator
 
 A Next.js web application that allows users to upload videos and generate captions automatically.
 
