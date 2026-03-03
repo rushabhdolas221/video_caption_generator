@@ -1,10 +1,17 @@
-'use client';
+"use client";
 
-import ResultVideo from "@/components/ResultVideo";
+export const dynamic = "force-dynamic";
+
+import nextDynamic from "next/dynamic";
 import TranscriptionEditor from "@/components/TranscriptionEditor";
 import { clearTranscriptionItems } from "@/libs/awsTranscriptionHelpers";
 import axios from "axios";
 import { useEffect, useState } from "react";
+
+const ResultVideo = nextDynamic(
+  () => import("@/components/ResultVideo"),
+  { ssr: false }
+);
 
 export default function FilePage({ params }) {
   const filename = params.filename;
@@ -45,7 +52,6 @@ export default function FilePage({ params }) {
       } else {
         setError("Transcription failed.");
       }
-
     } catch (err) {
       console.error("Error fetching transcription:", err);
       setError("Something went wrong while fetching transcription.");
